@@ -37,6 +37,11 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 //Comment me Befor deployment
 import cors from "cors";
 import UserRoutes from "./Routes/UserRoutes";
+import AdminRoutes from "./Routes/AdminRoutes";
+import TicketRoutes from "./Routes/TicketRoutes";
+import NotificationRoutes from "./Routes/NotifRoutes";
+import AgenceRoutes from "./Routes/AgenceRoutes";
+import OfferRoutes from "./Routes/OfferRoutes";
 app.use(bodyParser.json());
 app.use(cors({ origin: "*" }));
 // app.use(cors({ origin: ["https://arabatii.com/"] }));
@@ -52,6 +57,11 @@ app.use(cors({ origin: "*" }));
 //************************************ # API ROUTES # ****************************************//
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
+app.use("/api/admin", AdminRoutes);
+app.use("/api/ticket", TicketRoutes);
+app.use("/api/notif", NotificationRoutes);
+app.use("/api/agence", AgenceRoutes);
+app.use("/api/offer", OfferRoutes);
 
 //************************************ # SERVER PORT SET # ****************************************//
 

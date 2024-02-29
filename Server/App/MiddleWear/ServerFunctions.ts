@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import cryptoJs from "crypto-js";
 import dotenv from "dotenv";
 import { writeFile } from "fs";
+import adminModel from "../Models/Admin";
 
 dotenv.config();
 
@@ -45,6 +46,44 @@ export const AuthVerification = async (req: Request, res: Response, next: NextFu
         const GeneralFilter = { _id };
 
         const isUser = await Users.findOne({ _id });
+
+        if (!isUser) {
+            return res.json({ code: "01" });
+        }
+
+        // if (!hasConfig) {
+        //     return res.json({ code: "039" });
+        // }
+
+        const { passWord: dbPass } = isUser;
+
+        if (!doubleEncriptedStringsCompare(dbPass, passWord)) {
+            return res.json({ code: "02" });
+        }
+
+        headers.verifiedID = isUser._id;
+
+        return next();
+    } catch (error) {
+        console.log("🚀 ~ file: ServerFunctions.ts:64 ~ AuthVerification ~ error:", error);
+    }
+};
+
+export const adminAuthVerification = async (req: Request, res: Response, next: NextFunction) => {
+    const { headers }: any = req;
+    const { originalUrl } = req;
+    const { authorizationtoken } = headers;
+
+    if (!authorizationtoken) {
+        return res.json({ code: "01b" });
+    }
+
+    try {
+        const clearToken: any = jwt.verify(authorizationtoken, process.env.TOKEN_ENCRIPTION_KEY!);
+
+        const { passWord, id: _id } = clearToken;
+
+        const isUser = await adminModel.findOne({ _id });
 
         if (!isUser) {
             return res.json({ code: "01" });
