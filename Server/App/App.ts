@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 //Comment me Befor deployment
 import cors from "cors";
+import UserRoutes from "./Routes/UserRoutes";
 app.use(bodyParser.json());
 app.use(cors({ origin: "*" }));
 // app.use(cors({ origin: ["https://arabatii.com/"] }));
@@ -50,6 +51,7 @@ app.use(cors({ origin: "*" }));
 
 //************************************ # API ROUTES # ****************************************//
 app.use("/api/auth", AuthRoutes);
+app.use("/api/user", UserRoutes);
 
 //************************************ # SERVER PORT SET # ****************************************//
 

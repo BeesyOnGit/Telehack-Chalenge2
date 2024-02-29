@@ -1,13 +1,17 @@
 import { Server } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
+<<<<<<< HEAD
 // import { verrifiySocket } from "./MiddleWear/ServerFunctions";
 // import { myEmitter } from "./App";
 import { Socket } from 'socket.io';
+=======
+>>>>>>> 48b02eeb98bc18a3289914e91265444f3370c370
 
 export const sockets = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
     let locationBasedSockets: any = {};
     let onlineUsers: { UserId: string; socketId: string }[] = [];
 
+<<<<<<< HEAD
 io.on("connection", async (socket: Socket) => {
     try {
         console.log('Id Socket ', socket.id);
@@ -35,6 +39,14 @@ socket.on('disconnect',()=>{
     
   })
 });
+=======
+    io.on("connection", async (socket) => {
+        try {
+        } catch (error) {
+            console.log("🚀 ~ file: App.ts:74 ~ io.on ~ error:", error);
+        }
+    });
+>>>>>>> 48b02eeb98bc18a3289914e91265444f3370c370
 };
 
 
