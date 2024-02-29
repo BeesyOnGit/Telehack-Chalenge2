@@ -1,0 +1,1 @@
+- [Check the FIGMA design here](https://www.figma.com/proto/t806FyuWFnJKOB3joHsUy3/telehack?type=design&node-id=24-235&t=5qijP6Kam6ajlaes-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A6)
