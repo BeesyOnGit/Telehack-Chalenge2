@@ -1,5 +1,4 @@
 import "../NavBar/NavBar.css"
-
 import imageLogo from "../../Page/Images/jj.png"
 import { Link } from "react-router-dom"
 export default function NavBar(){
@@ -18,6 +17,8 @@ export default function NavBar(){
                           <Link to={"/contact"}  className="div">Contact</Link>
                           <Link  to={"/payment"}  className="div">E-payment</Link>
                       </div>
+
+                      <button>Z</button>
 
                   </div>
               </header>
