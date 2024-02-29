@@ -29,14 +29,23 @@ display: flex;
   color: white;
 }
 
-
-.DiVBu button {
+.DiVBu {
+  display: flex;
+  gap: 10px;
+}
+.DiVBu .buttn1 ,
+ .DiVBu .buttn2{
   padding: 10px;
-    width: 100%;
+  width: 100%;
   border: none;
   color: white; 
   background-color: rgb(1, 80, 1);  
   cursor: pointer;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.DiVBu .buttn1{
+  display: flex;
 }
 .DiVBu button {
   display: flex;gap: 10px;
@@ -90,4 +99,9 @@ display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.section3 {
+  width: 100%;
+  height: 300px;
 }
