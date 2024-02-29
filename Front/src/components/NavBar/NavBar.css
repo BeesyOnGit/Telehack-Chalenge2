@@ -1,10 +1,93 @@
 .header{
     width: 100%;
     height: 60Px;
-    background-color: rgba(0, 94, 157, 0.281);
+    background-color: rgba(242, 243, 244, 0.679);
     border-radius: 10px;
     padding: 6px;
+    display: flex;
+    border-radius: 0px 0px 30px 30px ;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px; 
+}
+.header .div {
+    cursor: pointer;
+    transition: .5s;
+    height: fit-content;
+    margin-top: -10px;
+    border-radius: 10px ;
+    padding: 9px;
+    text-decoration: none;
+    color: black;
 }
 header{
-padding: 10px;
+
+display: flex;
+
+}
+.header .div:hover {
+  background-color: rgb(0, 61, 139);
+  color: white;
+}
+
+
+.DiVBu button {
+  padding: 10px;
+    width: 100%;
+  border: none;
+  color: white; 
+  background-color: rgb(1, 80, 1);  
+  cursor: pointer;
+}
+.DiVBu button {
+  display: flex;gap: 10px;
+  border-radius: 10px;
+}
+
+.Section1 {
+  width: 100%;
+  height: 400px;
+  background-color: red;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Section1::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.589);
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+.white {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 10px;
+  position: absolute;
+}
+.white input{
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  margin-top: -3Px;
+}
+.white input:focus{
+   outline: none;
+}
+
+.inputDiv {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

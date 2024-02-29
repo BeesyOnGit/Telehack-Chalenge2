@@ -1,0 +1,23 @@
+.mainDash{
+    width: 90%;
+  
+}
+
+.Chat {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 20000;
+}
+.DivChat{
+    width:  50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50Px;
+    border-radius: 50%;
+    background-color: rgb(0, 132, 255);
+    cursor: pointer;
+    box-shadow: rgba(1, 117, 219, 0.965) 0px 22px 80px 4px;
+}
+
