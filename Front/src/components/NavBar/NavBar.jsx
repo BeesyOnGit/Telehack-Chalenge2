@@ -1,6 +1,8 @@
 import "../NavBar/NavBar.css"
 import imageLogo from "../../Page/Images/jj.png"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faDollarSign } from "@fortawesome/free-solid-svg-icons";
 export default function NavBar(){
      return(
         <div>
@@ -18,7 +20,9 @@ export default function NavBar(){
                           <Link  to={"/payment"}  className="div">E-payment</Link>
                       </div>
 
-                      <button>Z</button>
+                      <div style={{marginTop:'10px' , marginRight:'20px'}} className="DiVBu">
+                         <button><FontAwesomeIcon icon={faDollarSign}  style={{marginRight:'4px'}} /><p>Payment</p></button>
+                      </div>
 
                   </div>
               </header>
