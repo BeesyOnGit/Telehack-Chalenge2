@@ -4,7 +4,6 @@ import Users from "../Models/Users";
 import jwt from "jsonwebtoken";
 import cryptoJs from "crypto-js";
 import dotenv from "dotenv";
-import { FilterQuery, Model } from "mongoose";
 import { writeFile } from "fs";
 
 dotenv.config();
@@ -45,7 +44,7 @@ export const AuthVerification = async (req: Request, res: Response, next: NextFu
 
         const GeneralFilter = { _id };
 
-        const isUser: UserModel | null = await Users.findOne<UserModel>(GeneralFilter);
+        const isUser = await Users.findOne({ _id });
 
         if (!isUser) {
             return res.json({ code: "01" });
@@ -55,22 +54,13 @@ export const AuthVerification = async (req: Request, res: Response, next: NextFu
         //     return res.json({ code: "039" });
         // }
 
-        const { passWord: dbPass, isAdmin, type, location } = isUser;
+        const { passWord: dbPass } = isUser;
 
         if (!doubleEncriptedStringsCompare(dbPass, passWord)) {
             return res.json({ code: "02" });
         }
 
-        const urlNotPermitedForAdmin = isAdmin && adminProhibitedRoutesMap[urlWitoutParams(originalUrl)];
-
-        if (urlNotPermitedForAdmin) {
-            return res.json({ code: "03" });
-        }
-
         headers.verifiedID = isUser._id;
-        headers.isAdmin = isAdmin;
-        headers.userType = type;
-        headers.userLocation = location;
 
         return next();
     } catch (error) {
@@ -149,6 +139,10 @@ export const EncriptedStringsCompare = (firstString: string, secondString: strin
     return clearFirtStr == clearSecondStr;
 };
 
+export const encriptPassWord = (passWord: string) => {
+    return cryptoJs.AES.encrypt(passWord, process.env.PASSWORD_ENCRIPTION_KEY!);
+};
+
 export const doubleEncriptedStringsCompare = (encriptedString: string, encriptedString2: string) => {
     const clearFirtStr = cryptoJs.AES.decrypt(encriptedString, process.env.PASSWORD_ENCRIPTION_KEY!).toString(cryptoJs.enc.Utf8);
     const clearSecondStr = cryptoJs.AES.decrypt(encriptedString2, process.env.PASSWORD_ENCRIPTION_KEY!).toString(cryptoJs.enc.Utf8);
@@ -201,26 +195,6 @@ export const urlToFile = ({ url, name }: { url: any; name?: String }) => {
     // let file = new File([dataArr], `${name}.jpg`, { type: mime });
 
     // return file;
-};
-
-export const AddToDailyActivity = async (obj: any) => {
-    try {
-        const newDate: Number = new Date().getTime();
-        const newObj: Object = { ...obj, date: newDate };
-        const Dailyadded = await DailyLogs(newObj).save();
-
-        if (Dailyadded) {
-            return "success";
-        }
-
-        const { sellerCode, username, action } = obj;
-
-        console.log(`Daily log for ${sellerCode || username} consists of ${action} was not registered at ${new Date()}`);
-
-        return "fail";
-    } catch (error) {
-        console.log(error);
-    }
 };
 
 export function filterEditedObject(befor: any, edited: Object) {
@@ -355,27 +329,6 @@ export const spreadObjectToItskeys = (object: any) => {
         }
     }
     return spreadedObject;
-};
-
-export const getSellerCode: Function = async (length: number, DB: Model<any>, prefix: String) => {
-    try {
-        let sellerCode = `${prefix}-`;
-        let characters = "abcdefghijklmnopqrstuvwxyz";
-
-        for (let i = 0; i < length; i++) {
-            sellerCode += characters.charAt(Math.floor(Math.random() * characters.length));
-        }
-
-        const getSellersCodes = await DB.findOne({ SCode: sellerCode });
-
-        if (getSellersCodes) {
-            return getSellerCode(length, DB, prefix);
-        }
-
-        return sellerCode;
-    } catch (error) {
-        console.log("🚀 ~ file: ServerFuntions.ts:113 ~ getSellerCode ~ error:", error);
-    }
 };
 
 export const cleanPhoneNumber = (number: any) => {
