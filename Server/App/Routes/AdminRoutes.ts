@@ -1,9 +1,12 @@
 import express from "express";
-import { AuthVerification } from "../MiddleWear/ServerFunctions";
+import { adminAuthVerification } from "../MiddleWear/ServerFunctions";
 import { delteUser, editUser } from "../Controllers/UserControllers";
-const UserRoutes = express.Router();
+import { createAdmin, deleteAdmin, editAdmin, getAdminListe } from "../Controllers/AdminControllers";
+const AdminRoutes = express.Router();
 
-UserRoutes.post("/", AuthVerification, editUser);
-UserRoutes.delete("/", AuthVerification, delteUser);
+AdminRoutes.get("/", adminAuthVerification, getAdminListe);
+AdminRoutes.post("/edit", adminAuthVerification, editAdmin);
+AdminRoutes.post("/", adminAuthVerification, createAdmin);
+AdminRoutes.delete("/", adminAuthVerification, deleteAdmin);
 
-export default UserRoutes;
+export default AdminRoutes;
