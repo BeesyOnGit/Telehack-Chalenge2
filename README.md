@@ -1,2 +1,3 @@
 - [Check the FIGMA design for mobile here](https://www.figma.com/proto/t806FyuWFnJKOB3joHsUy3/telehack?type=design&node-id=24-235&t=5qijP6Kam6ajlaes-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A6)
 - [Check the FIGMA design for the Website here](https://www.figma.com/file/zMhZq53et8prCRyEZxnXdv/Untitled?type=design&node-id=0%3A1&mode=design&t=UAom32uMj60erTEm-1)
+- [You will find video presentation of the site and app here](https://drive.google.com/drive/folders/13Mgj9oViC_pgS2KLIBTISm4VcpzFZ7mk?usp=sharing)
