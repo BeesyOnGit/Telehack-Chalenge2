@@ -1,48 +1,48 @@
 import { Response, Request } from "express";
 import { Headers, editModelWithSave } from "../MiddleWear/ServerFunctions";
-import adminModel from "../Models/Admin";
+import ticketModel from "../Models/Tickets";
 
-export const getAdminListe = async (req: Request, res: Response) => {
+export const getTicketListe = async (req: Request, res: Response) => {
     const { body, headers: hd }: any = req;
     const headers: Headers = hd;
     const { verifiedID } = headers;
     try {
-        const newAdmin = await adminModel.find();
+        const newAdmin = await ticketModel.find();
 
         if (!newAdmin) {
-            return res.json({ code: "012" });
+            return res.json({ code: "010" });
         }
 
-        return res.json({ code: "23", data: newAdmin });
+        return res.json({ code: "33", data: newAdmin });
     } catch (error) {
         console.log("🚀 ~ login ~ error:", error);
     }
 };
-export const createAdmin = async (req: Request, res: Response) => {
+export const createTicket = async (req: Request, res: Response) => {
     const { body, headers: hd }: any = req;
     const headers: Headers = hd;
     const { verifiedID } = headers;
     try {
-        const newAdmin = await adminModel.create(body);
+        const newAdmin = await ticketModel.create(body);
 
         if (!newAdmin) {
             return res.json({ code: "07" });
         }
 
-        return res.json({ code: "12" });
+        return res.json({ code: "34" });
     } catch (error) {
         console.log("🚀 ~ login ~ error:", error);
     }
 };
-export const editAdmin = async (req: Request, res: Response) => {
-    const { body, headers: hd }: any = req;
+export const editTicket = async (req: Request, res: Response) => {
+    const { params, headers: hd, body }: any = req;
     const headers: Headers = hd;
-    const { verifiedID } = headers;
+    const { ticket } = params;
     try {
-        const admin = await adminModel.findOne({ _id: verifiedID });
+        const admin = await ticketModel.findOne({ _id: ticket });
 
         if (!admin) {
-            return res.json({ code: "01" });
+            return res.json({ code: "010" });
         }
 
         editModelWithSave(admin, body);
@@ -50,30 +50,30 @@ export const editAdmin = async (req: Request, res: Response) => {
         const saveChange = await admin.save();
 
         if (!saveChange) {
-            return res.json({ code: "041" });
+            return res.json({ code: "011" });
         }
 
-        return res.json({ code: "21" });
+        return res.json({ code: "31" });
     } catch (error) {
         console.log("🚀 ~ login ~ error:", error);
     }
 };
-export const deleteAdmin = async (req: Request, res: Response) => {
+export const deleteTicket = async (req: Request, res: Response) => {
     const { body, headers: hd }: any = req;
     const headers: Headers = hd;
     const { verifiedID } = headers;
     try {
-        const admin = await adminModel.findOne({ _id: verifiedID });
+        const admin = await ticketModel.findOne({ _id: verifiedID });
 
         if (!admin) {
-            return res.json({ code: "01" });
+            return res.json({ code: "010" });
         }
 
-        const deleteMe = await adminModel.deleteOne({ _id: verifiedID });
+        const deleteMe = await ticketModel.deleteOne({ _id: verifiedID });
         if (!deleteMe) {
-            return res.json({ code: "040" });
+            return res.json({ code: "013" });
         }
-        return res.json({ code: "22" });
+        return res.json({ code: "32" });
     } catch (error) {
         console.log("🚀 ~ delteadmin ~ error:", error);
     }
