@@ -17,11 +17,12 @@ export default function NavBar(){
                           <Link to={"/facture"} className="div">Facture</Link>
                           <Link to={"/offers"}  className="div">Offers</Link>
                           <Link to={"/contact"}  className="div">Contact</Link>
-                          <Link  to={"/payment"}  className="div">E-payment</Link>
+                          
                       </div>
 
                       <div style={{marginTop:'10px' , marginRight:'20px'}} className="DiVBu">
-                         <button><FontAwesomeIcon icon={faDollarSign}  style={{marginRight:'4px'}} /><p>Payment</p></button>
+                         <Link className="buttn1"><FontAwesomeIcon icon={faDollarSign}   style={{marginRight:'4px'}} /><p>Payment</p></Link>
+                         <Link className="buttn2" to={"/payment"}><FontAwesomeIcon icon={faDollarSign}   style={{marginRight:'4px'}} />Payment</Link>
                       </div>
 
                   </div>
