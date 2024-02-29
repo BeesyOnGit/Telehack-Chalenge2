@@ -1,0 +1,16 @@
+.chatContainer {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.inputChat {
+    margin: 0;
+}
+.inputChat input {
+    margin: 0 !important;
+    width: 100% !important;
+}
