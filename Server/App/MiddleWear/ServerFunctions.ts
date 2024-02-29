@@ -68,26 +68,26 @@ export const AuthVerification = async (req: Request, res: Response, next: NextFu
     }
 };
 
-export const verrifiySocket = async (socket: any, token: string, socketId: string) => {
-    const clearToken: any = TokenVerifier(token);
+// export const verrifiySocket = async (socket: any, token: string, socketId: string) => {
+//     const clearToken: any = TokenVerifier(token);
 
-    const { id: _id } = clearToken;
+//     const { id: _id } = clearToken;
 
-    const GeneralFilter = { _id };
+//     const GeneralFilter = { _id };
 
-    const isUser: UserModel | null = await Users.findOne<UserModel>(GeneralFilter);
+//     // const isUser: UserModel | null = await Users.findOne<UserModel>(GeneralFilter);
 
-    if (!isUser) {
-        return;
-    }
-    const { location, isAdmin } = isUser;
+//     if (!isUser) {
+//         return;
+//     }
+//     const { location, isAdmin } = isUser;
 
-    if (isAdmin) {
-        return { ...socket, [socketId]: "all" };
-    }
+//     if (isAdmin) {
+//         return { ...socket, [socketId]: "all" };
+//     }
 
-    return { ...socket, [socketId]: location };
-};
+//     return { ...socket, [socketId]: location };
+// };
 
 export const TokenVerifier = (token: string) => {
     try {
@@ -100,12 +100,12 @@ export const TokenVerifier = (token: string) => {
     }
 };
 
-export const generateToken = (id: string, passWord: string) => {
+export const generateToken = (id: string) => {
     try {
-        if (!id || !passWord) {
+        if (!id) {
             return "id and password are Mendatory";
         }
-        return jwt.sign({ id, passWord }, process.env.TOKEN_ENCRIPTION_KEY!);
+        return jwt.sign({ id }, process.env.TOKEN_ENCRIPTION_KEY!);
     } catch (error) {
         console.log("🚀 ~ file: ServerFunctions.ts:101 ~ generateToken ~ error:", error);
     }
@@ -132,11 +132,10 @@ export const editModelWithSave = (model: any, edit: any) => {
     return model;
 };
 
-export const EncriptedStringsCompare = (firstString: string, secondString: string) => {
-    const clearFirtStr = cryptoJs.AES.decrypt(firstString, process.env.PASSWORD_ENCRIPTION_KEY!).toString(cryptoJs.enc.Utf8);
+export const EncriptedStringsCompare = (clearStr: string, secondString: string) => {
     const clearSecondStr = cryptoJs.AES.decrypt(secondString, process.env.PASSWORD_ENCRIPTION_KEY!).toString(cryptoJs.enc.Utf8);
 
-    return clearFirtStr == clearSecondStr;
+    return clearStr == clearSecondStr;
 };
 
 export const encriptPassWord = (passWord: string) => {
