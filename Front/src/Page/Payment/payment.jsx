@@ -1,12 +1,15 @@
 import NavBar from "../../components/NavBar/NavBar";
 
-export default function Offers() {
+export default function Payment() {
      return(
-        <div >
+        <div>
+           
             <NavBar/>
             <div className="main">
-                 Offers 
+                 Contact 
             </div>
+
+
         </div>
      )
 }

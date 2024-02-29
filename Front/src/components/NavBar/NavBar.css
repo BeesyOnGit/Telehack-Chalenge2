@@ -4,7 +4,27 @@
     background-color: rgba(0, 94, 157, 0.281);
     border-radius: 10px;
     padding: 6px;
+    display: flex;
+    justify-content: space-between;
+
+    
+}
+.header .div {
+    cursor: pointer;
+    transition: .5s;
+    height: fit-content;
+    margin-top: -10px;
+    border-radius: 10px;
+    padding: 9px;
+    text-decoration: none;
+    color: black;
 }
 header{
 padding: 10px;
+display: flex;
+
+}
+.header .div:hover {
+  background-color: rgb(0, 61, 139);
+  color: white;
 }
